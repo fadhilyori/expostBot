@@ -1,4 +1,4 @@
 from chatbot import Chatbot
 
 key = input("API Key : ")
-Chatbot("Expost", key)
+bot = Chatbot("Expost", key)
