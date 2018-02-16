@@ -1,29 +1,28 @@
-import telepot
-from chatterbot import ChatBot
-from chatterbot.utils import get_response_time
-from chatterbot.trainers import ListTrainer
-from chatterbot.trainers import ChatterBotCorpusTrainer
+import os, time
+from handle import Handle
 
 class Chatbot:
-    botAPI = None
-    botServer = None
+    botHandle = None
     registeredUser = []
-    botCurrentStatus = "ready"
+    botCurrentStatus = "stop"
     def __init__(self, chatBotName, telegramTokenAPI): # done
-        self.botAPI = telepot.Bot(telegramTokenAPI)
-        self.botServer = ChatBot(chatBotName, storage_adapter='chatterbot.storage.SQLStorageAdapter', logic_adapters=["chatterbot.logic.MathematicalEvaluation", "chatterbot.logic.TimeLogicAdapter", "chatterbot.logic.BestMatch"], database='database/database.sqlite3')
-
-    def handle(self, msg): # planning
-        # some command
-        return True
+        self.botHandle = Handle(chatBotName, telegramTokenAPI)
+        self.startBot()
 
     def startBot(self): # planning
-        # check botAPI
-        # check botServer
-        # check registeredUser
+        # check bot Status
+        if (self.getBotStatus() == "ready"):
+            return True
+        # check botHandle
+        if (self.botHandle == None):
+            print("Bot is not initialized yet")
+            return False
+        # check registeredUser (pass)
         # run the handle
+        os.system("python handle.py")
         # run the view
         # set Ready
+        self.setReadyBotStatus()
         return True
 
     def stopBot(self): # planning
@@ -73,7 +72,7 @@ class Chatbot:
         fileUser.close()
         return True
 
-    def getBotStatus(self, parameter_list): # done
+    def getBotStatus(self): # done
         return self.botCurrentStatus
 
     def setReadyBotStatus(self): # done

@@ -1,6 +1,6 @@
 # ExpostBot
 
-**Requirement**
+## **Requirement**
 1. python3      : Download [here](https://www.python.org/downloads/ "Python")
 2. pip          : Download [here](https://pypi.python.org/pypi/pip "Pip : Python Package")
 3. ChatterBot   : Check the GitHub [here](https://github.com/gunthercox/ChatterBot "ChatterBot")
